@@ -75,7 +75,7 @@ def stochasticLocalSearch(input_matrix, csvwriter):
             global_improvement = True
 
     T2 = time.time()
-    result = [best_result, T2 - T1]
+    result = [best_result, (T2 - T1) * 1000]
     csvwriter.writerow(result)
     print(" time: ", (T2 - T1) * 1000, "ms")
     # print(input_matrix)
