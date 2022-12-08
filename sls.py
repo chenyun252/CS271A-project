@@ -7,7 +7,7 @@ import generate_travelling_salesman_problem as tsp_input
 import numpy as np
 
 
-def stochasticLocalSearch(input_matrix, csvwriter):
+def stochasticLocalSearch(input_matrix, csvwriter, filename):
     # input_matrix = tsp_input.write_distance_matrix(n, mean, sigma)
     # input_matrix = \
     #     [[0, 10, 15, 20],
@@ -75,7 +75,7 @@ def stochasticLocalSearch(input_matrix, csvwriter):
             global_improvement = True
 
     T2 = time.time()
-    result = [best_result, (T2 - T1) * 1000]
+    result = [filename, best_result, (T2 - T1)]
     csvwriter.writerow(result)
     print(" time: ", (T2 - T1) * 1000, "ms")
     # print(input_matrix)
@@ -131,7 +131,7 @@ if __name__ == "__main__":
     output_file = "sls_out.csv"
     output = open(output_file, mode="w+")
     csvwriter = csv.writer(output)
-    ids = [74445067, 0, 0]
+    ids = [74445067, 40643060, 23528864]
     types = ["SLS"]
     csvwriter.writerow(ids)
     csvwriter.writerow(types)
@@ -140,6 +140,6 @@ if __name__ == "__main__":
     file_list = glob.glob(file_path)
     for filename in file_list:
         input_matrix = np.loadtxt(fname=filename, delimiter=" ", skiprows=1)
-        stochasticLocalSearch(input_matrix, csvwriter)
+        stochasticLocalSearch(input_matrix, csvwriter, filename)
     total_time_end = time.time()
     print(" time: ", (total_time_end - total_time_start) * 1000, "ms")
